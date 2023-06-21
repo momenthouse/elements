@@ -118,8 +118,11 @@
       background: transparent;
       z-index: 10;
       height: 10px;
-      bottom: -3px;
+      top: 0;
+    bottom: 0;
+    margin: auto 0;
       width: 100%;
+      max-width: 142px;
     }
 
     media-control-bar {
@@ -298,37 +301,7 @@
     </media-play-button>
   </template>
 
-  <template partial="SeekBackwardButton">
-    <media-seek-backward-button
-      seekoffset="{{backwardseekoffset}}"
-      part="{{section ?? 'bottom'}} seek-backward button"
-      disabled="{{disabled}}"
-      aria-disabled="{{disabled}}"
-    >
-      <svg aria-hidden="true" viewBox="0 0 22 24" slot="backward">
-        <path d="M11 6V3L5.37 7 11 10.94V8a5.54 5.54 0 0 1 1.9 10.48v2.12A7.5 7.5 0 0 0 11 6Z" />
-        <text class="value" transform="translate(2.5 21)" style="font-size: 8px; font-family: 'ArialMT', 'Arial'">
-          {{backwardseekoffset}}
-        </text>
-      </svg>
-    </media-seek-backward-button>
-  </template>
 
-  <template partial="SeekForwardButton">
-    <media-seek-forward-button
-      seekoffset="{{forwardseekoffset}}"
-      part="{{section ?? 'bottom'}} seek-forward button"
-      disabled="{{disabled}}"
-      aria-disabled="{{disabled}}"
-    >
-      <svg aria-hidden="true" viewBox="0 0 22 24" slot="forward">
-        <path d="M11 6V3l5.61 4L11 10.94V8a5.54 5.54 0 0 0-1.9 10.48v2.12A7.5 7.5 0 0 1 11 6Z" />
-        <text class="value" transform="translate(10 21)" style="font-size: 8px; font-family: 'ArialMT', 'Arial'">
-          {{forwardseekoffset}}
-        </text>
-      </svg>
-    </media-seek-forward-button>
-  </template>
 
   <template partial="MuteButton">
     <media-mute-button part="bottom mute button" disabled="{{disabled}}" aria-disabled="{{disabled}}">
@@ -454,6 +427,14 @@
     ></media-playback-rate-button>
   </template>
 
+  <template partial="TimeRange">
+    <media-time-range
+      part="bottom time range"
+      disabled="{{disabled}}"
+      aria-disabled="{{disabled}}"
+    ></media-time-range>
+  </template>
+
   <template partial="VolumeRange">
     <media-volume-range
       part="bottom volume range"
@@ -472,13 +453,7 @@
     ></media-time-display>
   </template>
 
-  <template partial="TimeRange">
-    <media-time-range
-      part="bottom time range"
-      disabled="{{disabled}}"
-      aria-disabled="{{disabled}}"
-    ></media-time-range>
-  </template>
+  
 
   <media-controller
     defaultstreamtype="{{defaultstreamtype ?? 'on-demand'}}"
@@ -604,13 +579,17 @@
           <div slot="centered-chrome" class="center-controls">
             {{>PlayButton section="center"}}
           </div>
-          {{>TimeRange}}
           <media-control-bar>
             {{>PlayButton}}
             {{>SeekBackwardButton}}
             {{>SeekForwardButton}}
             {{>TimeDisplay}}
-            {{>MuteButton}}
+           
+            
+            {{>TimeRange}}
+            <div class="spacer"></div>
+             {{>MuteButton}}
+
             {{>VolumeRange}}
             <div class="spacer"></div>
             {{>PlaybackRateButton}}
