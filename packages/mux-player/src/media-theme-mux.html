@@ -19,7 +19,7 @@
       --media-preview-time-border-radius: 0 0 2px 2px;
       --media-preview-time-margin: 0 0 8px;
       --media-preview-time-text-shadow: none;
-
+      --media-range-track-border-radius: 3px;
       color: var(--_primary-color);
       display: inline-block;
       width: 100%;
@@ -126,15 +126,15 @@
     }
 
     media-control-bar {
-      --media-control-padding: 4px 3px;
+      --media-control-padding: 4px 16px;
     }
 
     [breakpointsm] media-control-bar {
-      --media-control-padding: 9px 5px;
+      --media-control-padding: 9px 16px;
     }
 
     [breakpointmd] media-control-bar {
-      --media-control-padding: 9px 7px;
+      --media-control-padding: 9px 16px;
     }
 
     media-control-bar :is([role='button'], [role='switch'], button) {
@@ -418,14 +418,7 @@
     ></media-live-button>
   </template>
 
-  <template partial="PlaybackRateButton">
-    <media-playback-rate-button
-      rates="{{playbackrates}}"
-      part="bottom playback-rate button"
-      disabled="{{disabled}}"
-      aria-disabled="{{disabled}}"
-    ></media-playback-rate-button>
-  </template>
+  
 
   <template partial="TimeRange">
     <media-time-range
